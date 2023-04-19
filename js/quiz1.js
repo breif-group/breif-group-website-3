@@ -17,6 +17,8 @@ let answers = document.getElementsByName("question");
 let currentIndex = 0;
 let rightAnswers = 0;
 let countdownInterval;
+let ques;
+let arrQ;
 
 function getQuestions() {
   let myRequest = new XMLHttpRequest();
@@ -42,6 +44,14 @@ function getQuestions() {
 
         // Get Right Answer
         let theRightAnswer = questionsObject[currentIndex].right_answer;
+        arrQ=[];
+        for(let x=0;x<questionsObject.length;x++){
+         ques=questionsObject[x].title;//get question from json
+         arrQ.push(ques);
+        }
+        let answer1=questionsObject[currentIndex].answer_1;
+        // console.log(answer1);
+        console.log(arrQ);
         let selectedAnswer = getSelectedAnswer();
 
         if (selectedAnswer === null) {
@@ -196,6 +206,7 @@ function showResults(count) {
   let theResults;
   let view_result = document.getElementById("viewResult");
 
+
   if (currentIndex === count) {
     quizArea.remove();
     answersArea.remove();
@@ -204,10 +215,17 @@ function showResults(count) {
 
     if (rightAnswers > count / 2 && rightAnswers < count) {
       theResults = `<span class="good">Good</span>, ${rightAnswers} From ${count}`;
+      quizapp.style.backgroundColor='green';
+      
+     
     } else if (rightAnswers === count) {
       theResults = `<span class="perfect">Perfect</span>, All Answers Is Good`;
+      quizapp.style.backgroundColor='green';
     } else {
       theResults = `<span class="bad">You have failed ,Try agin.</span>, ${rightAnswers} From ${count}`;
+      quizapp.style.backgroundColor='red';
+     
+      // html.style.backgroundColor='red';
     }
     resultsContainer.innerHTML = theResults;
     resultsContainer.style.padding = "10px";
@@ -216,8 +234,26 @@ function showResults(count) {
     view_result.innerHTML = "view result";
     view_result.style.display = "block";
 
-
+   
+  console.log(currentIndex);
   }
+  // if(currentIndex=5){
+  //   console.log(5);
+  //    table1=`<table>
+  //   <tr>
+  //   <td>222</td>
+  //   </tr>
+  //   </table>`
+
+
+  // }
+  // resultsContainer.innerHTML = table1;
+  //   resultsContainer.style.padding = "10px";
+  //   resultsContainer.style.backgroundColor = "white";
+  //   resultsContainer.style.marginTop = "10px";
+  //   view_result.innerHTML = "view result";
+  //   view_result.style.display = "block";
+  // }
 
 }
 
@@ -244,7 +280,8 @@ function countdown(duration, count) {
 // Get the reference to the button and the HTML div
 const viewResult = document.querySelector("#viewResult");
 const outputDiv = document.querySelector("#outputDiv");
-const logoutB = document.getElementById('logout');
+const logoutB = document.getElementById('Back');
+let table1;
 
 // Add a click event listener to the button
 viewResult.addEventListener("click", function (rAnswer) {
@@ -252,38 +289,63 @@ viewResult.addEventListener("click", function (rAnswer) {
   // Clear the output div before adding new content
   outputDiv.innerHTML = "";
   console.log(rAnswer);
-  logoutB.addEventListener('click', () => {
-    window.location.href = '/index.html';
-  });
-
+  
+  if(currentIndex=5){
+    console.log(5);
+    quizArea.remove();
+    answersArea.remove();
+    submitButton.remove();
+    bullets.remove();
+    logoutB.style.display="";
+    logoutB.addEventListener('click', () => {
+      window.location.href = '/index.html';
+    });
+ 
   // Loop through the array and create a div for each element
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == arr2[i]) {
-      const div = document.createElement("div");
-      const text = document.createTextNode(arr[i]);
-      div.style.padding = "15px";
-      div.className = "";
-      div.className = "w3-panel w3-pale-green w3-border";
-      div.appendChild(text);
-      outputDiv.appendChild(div);
-      div.style.backgroundColor = "green";
-      div.style.color = 'white';
-      div.style.marginBottom = "5px";
+    for(i=0;i<arr2.length;i++){
+      
+    table1=`<table style="border: 1px solid black">
+    <tr>
+    <th>Question</th>
+    <th> Answers</th>
+    <th>Right Answer</th>
+    </tr>
+    <tr>
+    <td>${arrQ[0]}</td>
+    <td>${arr[0]}</td>
+    <td>${arr2[0]}</td>
+    <tr>
+    <td>${arrQ[1]}</td>
+    <td>${arr[1]}</td>
+    <td>${arr2[1]}</td>
+    </tr>
+    <tr>
+    <td>${arrQ[2]}</td>
+    <td>${arr[2]}</td>
+    <td>${arr2[2]}</td>
+    </tr>
+    <tr>
+    <td>${arrQ[3]}</td>
+    <td>${arr[3]}</td>
+    <td>${arr2[3]}</td>
+    </tr>
+    <tr>
+    <td>${arrQ[4]}</td>
+    <td>${arr[4]}</td>
+    <td>${arr2[4]}</td>
+   
+    </tr>
+    </table>`
 
-    }
-    else {
-      const div = document.createElement("div");
-      const text = document.createTextNode(arr[i]);
-      div.style.backgroundColor = "red";
-      div.style.border = "1px black solid";
-      div.style.padding = "15px";
-      div.className = "alert"
-      div.className = "w3-panel w3-pale-red w3-border";
-      div.appendChild(text);
-      outputDiv.appendChild(div);
-      div.style.color = 'white';
-      div.style.marginBottom = "5px";
-    }
+
+  
+  outputDiv.innerHTML = table1;
+   outputDiv.style.padding = "10px";
+    outputDiv.style.backgroundColor = "white";
+    outputDiv.style.marginTop = "10px";
+   
+
     console.log(arr
     );
     console.log(arr2);
@@ -291,8 +353,8 @@ viewResult.addEventListener("click", function (rAnswer) {
     //   logoutB.addEventListener('click', () => {
     //     window.location.href = '/index.html';})
   }
-
+  }
+}
 });
-
 
 
