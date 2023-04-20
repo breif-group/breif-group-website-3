@@ -16,7 +16,7 @@ function ValidateForm(event) {
   
     // userName section
     if (Username.value === '') {
-      nameerror.style.color = "black";
+      nameerror.style.color = "red";
       nameerror.textContent = "The name field is required.";
       Username.style.color="red";
       event.preventDefault();
@@ -27,12 +27,12 @@ function ValidateForm(event) {
   
     // Email section
     if (Email.value === '') {
-      Emailerror.style.color = "black";
+      Emailerror.style.color = "red";
       Emailerror.textContent = "The email field is required.";
       Email.style.borderColor = "#FEA0CD";
       event.preventDefault();
     } else if (!emailregex.test(Email.value)) {
-      Emailerror.style.color = "black";
+      Emailerror.style.color = "red";
       Emailerror.textContent = "You have entered an invalid email address!";
       Email.style.borderColor = "#FEA0CD";
       event.preventDefault();
@@ -43,12 +43,12 @@ function ValidateForm(event) {
   
     // Password section
     if (Password.value === '') {
-      passworderror.style.color = "black";
+      passworderror.style.color = "red";
       passworderror.textContent = "The password field is required.";
       Password.style.borderColor = "#FEA0CD";
       event.preventDefault();
     } else if (!passwordregex.test(Password.value)) {
-      passworderror.style.color = "black";
+      passworderror.style.color = "red";
       passworderror.textContent = "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.";
       Password.style.borderColor = "#FEA0CD";
       event.preventDefault();
@@ -59,12 +59,12 @@ function ValidateForm(event) {
   
     // Confirm password section
     if (Confirm.value === '') {
-      confirmerror.style.color = "black";
+      confirmerror.style.color = "red";
       confirmerror.textContent = "The confirm password field is required.";
       Confirm.style.borderColor = "#FEA0CD";
       event.preventDefault();
     } else if (Confirm.value !== Password.value) {
-      confirmerror.style.color = "black";
+      confirmerror.style.color = "red";
       confirmerror.textContent = "The passwords do not match.";
       Confirm.style.borderColor = "#FEA0CD";
       event.preventDefault();

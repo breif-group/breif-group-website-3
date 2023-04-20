@@ -1,27 +1,50 @@
+let button1=document.querySelector("#quiz1");
+let button2=document.querySelector("#quiz2");
+let button3=document.querySelector("#quiz3");
+let logOut =document.querySelector("#logOut")
 
-// // Get the first element with class "user-N"
-// let name1 = document.getElementsByClassName("user-N")[0];
 
-// // Get the value of the "currentUser" key from sessionStorage
-// let string3 = sessionStorage.getItem('currentUser');
 
-// // Remove everything after the first comma in the string
-// string3 = string3.slice(0,string3.indexOf(','));
+let welcome=document.querySelector("#massage-welc");
 
-// // Log the resulting string to the console
-// console.log(string3);
+function onload (){
+    if(sessionStorage.getItem('currentUser') === null){
+        console.log("sessionStorage is empty")
+    }
+    else {
+        let user=JSON.parse(sessionStorage.getItem('currentUser'));
+        let userName=user.Name;
+        console.log("session is full "+"user is "+userName)
+        welcome.textContent="Welcome "+userName;
+        logOut.style.display="block";
+    }
+}
+window.addEventListener('load', onload);
 
-// // Set the innerHTML of the "user-N" element to the first name in the string
-// name1.innerHTML = string3.slice(0,string3.indexOf(" "));
-
-// // Log the resulting string to the console
-// console.log(string3);
-
-// // Define a function called "goto" that takes a parameter called "name"
-// function goto(name){
-//   // Set the value of the "quizName" key in sessionStorage to the value of the "name" parameter
-// sessionStorage.setItem('quizName',name);
-// }
-
+button1.addEventListener('click',function(){
+    if(sessionStorage.getItem('currentUser') === null){
+        alert("Please log in to enter the quiz");
+        return
+    } else
+    window.location.href="/quiz3.html";
+});
+button2.addEventListener('click',function(){
+    if(sessionStorage.getItem('currentUser') === null){
+        alert("Please log in to enter the quiz");
+        return
+    } else
+    window.location.href="/quiz2.html";
+    });
+button3.addEventListener('click',function(){
+    if(sessionStorage.getItem('currentUser') === null){
+        alert("Please log in to enter the quiz");
+        return
+    } else
+        window.location.href="/quiz1.HTML";
+        }); 
+logOut.addEventListener('click',function(){
+    sessionStorage.clear();
+    window.location.href="index.html";
+});
 
 

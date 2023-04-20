@@ -13,6 +13,7 @@ function ValidateForm(event)
        // Email section
       if (Email.value === '') {
         emailError.textContent = "The email field is required.";
+        emailError.style.color = "red";
         Email.style.borderColor = "#FEA0CD";
         event.preventDefault();
       } else {
@@ -23,6 +24,7 @@ function ValidateForm(event)
       // Password section
       if (Password.value === '') {
         passworderror.textContent = "The password field is required.";
+        passworderror.style.color = "red";
         Password.style.borderColor = "#FEA0CD";
         event.preventDefault();
       } else {
@@ -61,7 +63,7 @@ for (let i = 0; i < existingUsers.length; i++) {
   
  }if (CURRENTUSERINFO) {
   matcherror.textContent = "Your are loged in";
-  window.location.assign("/welcome.html");
+  window.location.assign("/index.html");
 }
 
 }

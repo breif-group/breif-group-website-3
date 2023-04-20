@@ -7,7 +7,7 @@ header span img{
 }
 .homeContainer{
     width: 100%;
-    background-image: url("/imgs/img3.png");
+    /* background-image: url("/imgs/img3.png"); */
     background-size: cover;
     background-position: center;
     /* position: relative; */
@@ -170,4 +170,7 @@ header span img{
     text-align: center;
     color: white;
 }
-
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
